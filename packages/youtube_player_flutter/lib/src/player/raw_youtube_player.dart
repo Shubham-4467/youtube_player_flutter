@@ -250,7 +250,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
         <div id="player"></div>
         <script>
             var tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
+            tag.src = "https://www.youtube-nocookie.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
             var player;
