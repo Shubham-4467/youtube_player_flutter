@@ -186,7 +186,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
               handlerName: 'Errors',
               callback: (args) {
                 final errorCode =
-                    args.first is int ? args.first : int.parse(args.first);
+                args.first is int ? args.first : int.parse(args.first);
                 controller!.updateValue(
                   controller!.value.copyWith(errorCode: errorCode),
                 );
@@ -256,10 +256,6 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
             var player;
             var timerId;
             function onYouTubeIframeAPIReady() {
-                // Override host to use nocookie domain for privacy
-                if (YTConfig) {
-                    YTConfig.host = 'https://www.youtube-nocookie.com';
-                }
                 player = new YT.Player('player', {
                     height: '100%',
                     width: '100%',
