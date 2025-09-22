@@ -227,7 +227,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
     );
   }
 
-   String get player => '''
+  String get player => '''
     <!DOCTYPE html>
     <html>
     <head>
@@ -260,9 +260,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                     height: '100%',
                     width: '100%',
                     videoId: '${controller!.initialVideoId}',
-                    host: 'https://www.youtube-nocookie.com',
                     playerVars: {
-                        'origin': window.location.origin,
                         'controls': 0,
                         'playsinline': 1,
                         'enablejsapi': 1,
@@ -312,24 +310,74 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                 }, 100);
             }
 
-            function play() { player.playVideo(); return ''; }
-            function pause() { player.pauseVideo(); return ''; }
-            function loadById(loadSettings) { player.loadVideoById(loadSettings); return ''; }
-            function cueById(cueSettings) { player.cueVideoById(cueSettings); return ''; }
-            function loadPlaylist(playlist, index, startAt) { player.loadPlaylist(playlist, 'playlist', index, startAt); return ''; }
-            function cuePlaylist(playlist, index, startAt) { player.cuePlaylist(playlist, 'playlist', index, startAt); return ''; }
-            function mute() { player.mute(); return ''; }
-            function unMute() { player.unMute(); return ''; }
-            function setVolume(volume) { player.setVolume(volume); return ''; }
-            function seekTo(position, seekAhead) { player.seekTo(position, seekAhead); return ''; }
-            function setSize(width, height) { player.setSize(width, height); return ''; }
-            function setPlaybackRate(rate) { player.setPlaybackRate(rate); return ''; }
-            function setTopMargin(margin) { document.getElementById("player").style.marginTop = margin; return ''; }
+            function play() {
+                player.playVideo();
+                return '';
+            }
+
+            function pause() {
+                player.pauseVideo();
+                return '';
+            }
+
+            function loadById(loadSettings) {
+                player.loadVideoById(loadSettings);
+                return '';
+            }
+
+            function cueById(cueSettings) {
+                player.cueVideoById(cueSettings);
+                return '';
+            }
+
+            function loadPlaylist(playlist, index, startAt) {
+                player.loadPlaylist(playlist, 'playlist', index, startAt);
+                return '';
+            }
+
+            function cuePlaylist(playlist, index, startAt) {
+                player.cuePlaylist(playlist, 'playlist', index, startAt);
+                return '';
+            }
+
+            function mute() {
+                player.mute();
+                return '';
+            }
+
+            function unMute() {
+                player.unMute();
+                return '';
+            }
+
+            function setVolume(volume) {
+                player.setVolume(volume);
+                return '';
+            }
+
+            function seekTo(position, seekAhead) {
+                player.seekTo(position, seekAhead);
+                return '';
+            }
+
+            function setSize(width, height) {
+                player.setSize(width, height);
+                return '';
+            }
+
+            function setPlaybackRate(rate) {
+                player.setPlaybackRate(rate);
+                return '';
+            }
+
+            function setTopMargin(margin) {
+                document.getElementById("player").style.marginTop = margin;
+                return '';
+            }
         </script>
     </body>
     </html>
   ''';
-
 
   String boolean({required bool value}) => value == true ? "'1'" : "'0'";
 
