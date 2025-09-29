@@ -1,7 +1,3 @@
-// Copyright 2020 Sarbagya Dhaubanjar. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -9,17 +5,12 @@ import '../enums/player_state.dart';
 import '../utils/youtube_meta_data.dart';
 import '../utils/youtube_player_controller.dart';
 
-/// A raw youtube player widget which interacts with the underlying webview inorder to play YouTube videos.
-///
-/// Use [YoutubePlayer] instead.
 class RawYoutubePlayer extends StatefulWidget {
-  /// Creates a [RawYoutubePlayer] widget.
   const RawYoutubePlayer({
     super.key,
     this.onEnded,
   });
 
-  /// {@macro youtube_player_flutter.onEnded}
   final void Function(YoutubeMetaData metaData)? onEnded;
 
   @override
@@ -73,7 +64,6 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
         key: widget.key,
         initialData: InAppWebViewInitialData(
           data: player,
-          //baseUrl: WebUri.uri(Uri.https('www.youtube.com')),
           encoding: 'utf-8',
           mimeType: 'text/html',
         ),
@@ -257,7 +247,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
             var timerId;
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
-                    host: 'https://www.youtube-nocookie.com', // THIS IS THE NEW LINE
+                    host: 'https://www.youtube-nocookie.com',
                     height: '100%',
                     width: '100%',
                     videoId: '${controller!.initialVideoId}',
@@ -278,7 +268,12 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                     },
                     events: {
                         onReady: function(event) {
-                            document.getElementById('player').setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                            var iframe = document.getElementById('player').querySelector('iframe');
+                            if (iframe) {
+                                iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                                iframe.setAttribute('title', 'YouTube video player');
+                                iframe.setAttribute('allow', iframe.getAttribute('allow') + '; web-share');
+                            }
                             window.flutter_inappwebview.callHandler('Ready');
                         },
                         onStateChange: function(event) { sendPlayerStateChange(event.data); },
