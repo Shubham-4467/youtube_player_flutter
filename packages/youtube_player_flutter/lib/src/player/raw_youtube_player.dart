@@ -186,7 +186,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
               handlerName: 'Errors',
               callback: (args) {
                 final errorCode =
-                args.first is int ? args.first : int.parse(args.first);
+                    args.first is int ? args.first : int.parse(args.first);
                 controller!.updateValue(
                   controller!.value.copyWith(errorCode: errorCode),
                 );
@@ -276,7 +276,10 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                         'end': ${controller!.flags.endAt}
                     },
                     events: {
-                        onReady: function(event) { window.flutter_inappwebview.callHandler('Ready'); },
+                        onReady: function(event) { 
+                            document.getElementById('player').setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                            window.flutter_inappwebview.callHandler('Ready'); 
+                        },
                         onStateChange: function(event) { sendPlayerStateChange(event.data); },
                         onPlaybackQualityChange: function(event) { window.flutter_inappwebview.callHandler('PlaybackQualityChange', event.data); },
                         onPlaybackRateChange: function(event) { window.flutter_inappwebview.callHandler('PlaybackRateChange', event.data); },
