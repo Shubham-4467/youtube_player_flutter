@@ -272,7 +272,6 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                             if (iframe) {
                                 iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
                                 iframe.setAttribute('title', 'YouTube video player');
-                                iframe.setAttribute('allow', iframe.getAttribute('allow') + '; web-share');
                             }
                             window.flutter_inappwebview.callHandler('Ready');
                         },
