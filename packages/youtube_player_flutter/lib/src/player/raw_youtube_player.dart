@@ -257,6 +257,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
             var timerId;
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
+                    host: 'https://www.youtube-nocookie.com', // THIS IS THE NEW LINE
                     height: '100%',
                     width: '100%',
                     videoId: '${controller!.initialVideoId}',
@@ -276,9 +277,9 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                         'end': ${controller!.flags.endAt}
                     },
                     events: {
-                        onReady: function(event) { 
+                        onReady: function(event) {
                             document.getElementById('player').setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-                            window.flutter_inappwebview.callHandler('Ready'); 
+                            window.flutter_inappwebview.callHandler('Ready');
                         },
                         onStateChange: function(event) { sendPlayerStateChange(event.data); },
                         onPlaybackQualityChange: function(event) { window.flutter_inappwebview.callHandler('PlaybackQualityChange', event.data); },
