@@ -247,7 +247,7 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
             var timerId;
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
-                    host: 'https://www.youtube-nocookie.com',
+                    host: 'https://www.youtube.com',
                     height: '100%',
                     width: '100%',
                     videoId: '${controller!.initialVideoId}',
