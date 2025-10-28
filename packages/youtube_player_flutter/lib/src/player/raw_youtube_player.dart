@@ -247,25 +247,26 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
             var timerId;
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
-                    host: 'https://www.youtube.com',
-                    height: '100%',
-                    width: '100%',
-                    videoId: '${controller!.initialVideoId}',
-                    playerVars: {
-                        'controls': 0,
-                        'playsinline': 1,
-                        'enablejsapi': 1,
-                        'fs': 0,
-                        'rel': 0,
-                        'showinfo': 0,
-                        'iv_load_policy': 3,
-                        'modestbranding': 1,
-                        'cc_load_policy': ${boolean(value: controller!.flags.enableCaption)},
-                        'cc_lang_pref': '${controller!.flags.captionLanguage}',
-                        'autoplay': ${boolean(value: controller!.flags.autoPlay)},
-                        'start': ${controller!.flags.startAt},
-                        'end': ${controller!.flags.endAt}
-                    },
+             host: 'https://www.youtube.com',
+  height: '100%',
+  width: '100%',
+  videoId: '${controller!.initialVideoId}',
+  playerVars: {
+    'origin': 'https://www.youtube.com', // ✅ important
+    'controls': 0,
+    'playsinline': 1,
+    'enablejsapi': 1,
+    'fs': 0,
+    'rel': 0,
+    'showinfo': 0,
+    'iv_load_policy': 3,
+    'modestbranding': 1,
+    'cc_load_policy': ${boolean(value: controller!.flags.enableCaption)},
+    'cc_lang_pref': '${controller!.flags.captionLanguage}',
+    'autoplay': ${boolean(value: controller!.flags.autoPlay)},
+    'start': ${controller!.flags.startAt},
+    'end': ${controller!.flags.endAt}
+  },
                     events: {
                         onReady: function(event) {
                             var iframe = document.getElementById('player').querySelector('iframe');
